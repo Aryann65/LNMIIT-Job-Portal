@@ -22,8 +22,8 @@ export default function  Register (){
 
 
   
-  const [formData, setFormData] = useState({ email: "", password: "" });
-  const [error, setError] = useState({ email: "", password: "", name: '' });
+  const [formData, setFormData] = useState({ email: "", password: "" ,role: "",name :"" });//changed
+  const [error, setError] = useState({ email: "", password: "", name: '',role: "" });//changed
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,6 +37,10 @@ export default function  Register (){
     }
     if (!formData.name) {
       setError({ ...error, name: "Name Field is required" })
+      return;
+    }
+    if (!formData.role) { //changed
+      setError({ ...error, name: "Role is required" })
       return;
     }
 
@@ -84,6 +88,14 @@ export default function  Register (){
                 <input onChange={(e) => setFormData({ ...formData, password: e.target.value })} type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" required="" />
                 {
                   error.password && <p className="text-sm text-red-500">{error.password}</p>
+                }
+              </div>
+              {/*changed*/}
+              <div className='text-left'> 
+                <label htmlFor="role" className="block mb-2 text-sm font-medium text-gray-900 ">Role</label>
+                <input onChange={(e) => setFormData({ ...formData, role: e.target.value })} type="text" name="role" id="role" placeholder="admin or user" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5" required="" />
+                {
+                  error.role && <p className="text-sm text-red-500">{error.role}</p>
                 }
               </div>
 
